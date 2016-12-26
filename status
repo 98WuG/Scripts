@@ -1,0 +1,54 @@
+#!/bin/zsh
+
+STATUS=""
+
+# Date status
+DATE="$(echo -e "\uf073") $(date +%b) $(date +%d)"
+
+# Time status 
+TIME="$(echo -e "\uf017") $(date +%I:%M%p)"
+
+
+# Battery status 
+if [[ $(acpi) == *"Full"* ]];
+then
+	BATTERY="$(echo -e "\uf1e6 \uf240") FULL"
+else
+	if [[ $(acpi) == *"Unknown"* ]];
+	then
+		BATTERY="$(acpi | cut -d ' ' -f 4 | sed 's/.$//')"
+	else
+		BATTERY="$(acpi | cut -d ' ' -f 4 | sed 's/..$//')"
+	fi
+	if [ $BATTERY -gt 80 ];
+	then
+		BATTERY="$(echo -e "\uf240") $BATTERY%"
+	elif [ $BATTERY -gt 60 ];
+	then
+		BATTERY="$(echo -e "\uf241") $BATTERY%"
+	elif [ $BATTERY -gt 40 ];
+	then
+		BATTERY="$(echo -e "\uf242") $BATTERY%"
+	elif [ $BATTERY -gt 20 ];
+	then
+		BATTERY="$(echo -e "\uf243") $BATTERY%"
+	else
+		BATTERY="$(echo -e "\uf244") $BATTERY%"
+	fi
+	if [[ $(acpi) != *"Discharging"* ]];
+	then
+		BATTERY="$(echo -e "\uf1e6") $BATTERY"	
+	fi
+fi
+
+# Network status
+WIRELESS="$(echo -e "\uf1eb")"
+if [ $(nmcli dev status | sed -n 2p | cut -d " " -f 11) != "--" ];
+then
+	WIRELESS="$WIRELESS $(nmcli dev status | sed -n 2p | cut -d " " -f 11 | tr '[:lower:]' '[:upper:]')"
+else
+	WIRELESS="$WIRELESS DISCONNECTED"
+fi
+
+STATUS="$DATE $TIME $BATTERY $WIRELESS"
+echo $STATUS

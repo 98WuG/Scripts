@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if pgrep "panel_bar" > /dev/null
+then
+	pkill panel_bar &
+	bspc config top_padding 25
+else
+	panel &
+	bspc config top_padding 60
+fi
