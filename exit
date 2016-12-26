@@ -17,10 +17,6 @@ if pgrep "libreoffice" > /dev/null
 then
 	pkill libreoffice &
 fi
-if pgrep "urxvt" > /dev/null
-then
-	pkill urxvt &
-fi
 
 # Logout of XFCE4
 if pgrep "xfce4" > /dev/null
