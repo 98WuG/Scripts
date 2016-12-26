@@ -58,6 +58,3 @@ i3lock -u -i $OUTPUT_IMAGE -t
 
 #Remove the generated image:
 rm $OUTPUT_IMAGE
-
-sleep 1
-scrot /home/jerry/hello.png
