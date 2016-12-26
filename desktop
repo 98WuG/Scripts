@@ -1,0 +1,12 @@
+#/bin/bash
+
+# This is so inefficient pls find a better way soon
+pkill dunst && dunst &!
+
+DESKTOPS="$(bspc query -D -m focused --names | sed ':a;N;$!ba;s/\n/\t/g')"
+CURRENT="$(bspc query -D -d focused --names)"
+CARET=$(echo -e "\uf0da")
+DESKTOPS=$(echo -e "$DESKTOPS" | sed "s/$CURRENT/$CARET $CURRENT/g")
+
+#notify-send "$(echo -e $DESKTOPS)"
+notify-send "$DESKTOPS"

@@ -17,6 +17,10 @@ if pgrep "libreoffice" > /dev/null
 then
 	pkill libreoffice &
 fi
+if pgrep "dunst" > /dev/null
+then
+	pkill dunst &
+fi
 
 # Logout of XFCE4
 if pgrep "xfce4" > /dev/null
