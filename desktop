@@ -8,5 +8,4 @@ CURRENT="$(bspc query -D -d focused --names)"
 CARET=$(echo -e "\uf0da")
 DESKTOPS=$(echo -e "$DESKTOPS" | sed "s/$CURRENT/$CARET $CURRENT/g")
 
-#notify-send "$(echo -e $DESKTOPS)"
 notify-send "$DESKTOPS"

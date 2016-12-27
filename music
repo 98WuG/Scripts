@@ -7,4 +7,4 @@ then
 else
 	CURRENT="$(echo -e "\uf001") Now Playing: $CURRENT"
 fi
-echo $CURRENT
+notify-send "$CURRENT"
