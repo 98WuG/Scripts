@@ -1,5 +1,0 @@
-#!/bin/bash
-
-#pls find better way to clear notifications
-
-pkill dunst && dunst &!

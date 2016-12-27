@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pkill dunst && dunst &!
+VOLUME="$(echo -e "\uf028") $(pamixer --get-volume)"
+notify-send "$VOLUME"
