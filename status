@@ -51,4 +51,4 @@ else
 fi
 
 STATUS="$DATE $TIME $BATTERY $WIRELESS"
-echo $STATUS
+notify-send "$STATUS"
