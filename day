@@ -2,8 +2,8 @@
 
 bspc config focused_border_color \#20b2aa
 
-nitrogen --head=0 --set-zoom-fill ~/Pictures/day.jpg
-nitrogen --head=1 --set-zoom-fill ~/.config/bspwm/Space-Desktop.jpg
+nitrogen --head=0 --set-zoom-fill ~/Scripts/wallpapers/day1.jpg
+nitrogen --head=1 --set-zoom-fill ~/Scripts/wallpapers/day2.jpg
 
 xrdb -merge ~/.Xresources
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+notify-send "Lock process initiated..."
 # All options are here: http://www.imagemagick.org/Usage/blur/#blur_args
 BLURTYPE="0x8"
 #BLURTYPE="0x5"
