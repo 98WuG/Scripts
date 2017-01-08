@@ -25,15 +25,14 @@ fi
 # Logout of XFCE4
 if pgrep "xfce4" > /dev/null
 then
-	#Tested: Working
+	# Tested: Working
 	xfce4-session-logout --logout --fast &
 fi
 
 # Logout of GNOME
 if pgrep "gnome" > /dev/null
 then
-	# Untested
-	# I don't actually use GNOME
+	# Tested
 	gnome-session-quit &
 fi
 

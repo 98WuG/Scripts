@@ -1,0 +1,26 @@
+#!/bin/bash
+
+PS3='Please enter your choice: '
+options=("Lock" "Logoff" "Shutdown" "Reboot" "Quit")
+echo -e "\e[4mPower Menu\e[0m"
+select opt in "${options[@]}"
+do
+	case $opt in
+		"Lock")
+			~/Scripts/i3lock-fancy-multimonitor/lock &
+			;;
+		"Logoff")
+			~/Scripts/exit &
+			;;
+		"Shutdown")
+			shutdown now &
+			;;
+		"Reboot")
+			reboot &
+			;;
+		"Quit")
+			break
+			;;
+		*) echo invalid option;;
+	esac
+done
