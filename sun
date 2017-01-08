@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+if pgrep -x "sunwait" > /dev/null
+then
+	notify-send "Sunwait already running"
+else
+	sunwait wait rise 38.933868N 77.177260W ; ~/Scripts/day
+	sunwait wait set 38.933868N 77.177260W ; ~/Scripts/night
+fi

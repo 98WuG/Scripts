@@ -8,3 +8,5 @@ nitrogen --head=1 --set-zoom-fill ~/Scripts/wallpapers/night2.jpg
 xrdb -merge ~/.Xresources_night
 
 light -S 50
+
+notify-send "Night mode"
