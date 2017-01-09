@@ -1,9 +1,26 @@
 #!/bin/zsh
 
+LAT=38.933868N
+LONG=77.177260W
+
 if pgrep -x "sunwait" > /dev/null
 then
 	notify-send "Sunwait already running"
 else
-	sunwait wait rise 38.933868N 77.177260W ; ~/Scripts/day
-	sunwait wait set 38.933868N 77.177260W ; ~/Scripts/night
+	if [[ $(sunwait poll $LAT $LONG) == NIGHT ]];
+	then
+		~/Scripts/night
+		while true
+		do
+			sunwait wait rise $LAT $LONG ; ~/Scripts/day
+			sunwait wait set $LAT $LONG ; ~/Scripts/night
+		done
+	else
+		~/Scripts/day
+		while true
+		do
+			sunwait wait set $LAT $LONG ; ~/Scripts/night
+			sunwait wait rise $LAT $LONG ; ~/Scripts/day
+		done
+	fi
 fi

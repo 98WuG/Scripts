@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-bspc config focused_border_color \#20b2aa
-
 nitrogen --head=0 --set-zoom-fill ~/Scripts/wallpapers/day1.jpg
 nitrogen --head=1 --set-zoom-fill ~/Scripts/wallpapers/day2.jpg
 
