@@ -10,17 +10,10 @@ else
 	if [[ $(sunwait poll $LAT $LONG) == NIGHT ]];
 	then
 		~/Scripts/night
-		while true
-		do
-			sunwait wait rise $LAT $LONG ; ~/Scripts/day
-			sunwait wait set $LAT $LONG ; ~/Scripts/night
-		done
-	else
-		~/Scripts/day
-		while true
-		do
-			sunwait wait set $LAT $LONG ; ~/Scripts/night
-			sunwait wait rise $LAT $LONG ; ~/Scripts/day
-		done
 	fi
+	while true
+	do
+		sunwait wait rise $LAT $LONG ; ~/Scripts/day
+		sunwait wait set $LAT $LONG ; ~/Scripts/night
+	done
 fi

@@ -1,5 +1,5 @@
 #!/bin/bash
-notify-send "Lock process initiated..."
+
 # All options are here: http://www.imagemagick.org/Usage/blur/#blur_args
 BLURTYPE="0x8"
 #BLURTYPE="0x5"
@@ -18,6 +18,9 @@ OUTPUT_IMAGE="/tmp/i3lock.png"
 
 #Take screenshot:
 scrot -z $OUTPUT_IMAGE
+
+#Notify process has started because it may take a few seconds
+notify-send "Lock process initiated..."
 
 #Get dimensions of the lock image:
 LOCK_IMAGE_INFO=`identify $LOCK`
