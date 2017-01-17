@@ -1,0 +1,6 @@
+#!/bin/bash
+scrot /tmp/screen.png
+notify-send "Lock process initiated..."
+convert /tmp/screen.png -scale 5% -scale 2000% /tmp/screen.png
+i3lock -u -i /tmp/screen.png
+rm /tmp/screen.png
