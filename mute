@@ -6,5 +6,5 @@ if [ $MUTESTATUS = "false" ];
 then
 	notify-send "$(echo -e "\uf028") $(pamixer --get-volume)"
 else
-	notify-send "$(echo -e "\uf026") MUTED"
+	notify-send "$(echo -e "\uf026") MUTE"
 fi
