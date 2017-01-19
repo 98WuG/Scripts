@@ -3,8 +3,8 @@
 CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
 if [[ -z $CURRENT ]];
 then
-	CURRENT="$(echo -e "\uf001") Nothing playing"
+	CURRENT="$(echo -e "\uf025") Nothing playing"
 else
-	CURRENT="$(echo -e "\uf001") Now Playing: $CURRENT"
+	CURRENT="$(echo -e "\uf025") Now Playing: $CURRENT"
 fi
 notify-send "$CURRENT"
