@@ -1,0 +1,6 @@
+#!/bin/zsh 
+
+TIMEOUT=5
+LOCK=~/Scripts/lock
+
+xautolock -time $TIMEOUT -locker $LOCK -corners -000

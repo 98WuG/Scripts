@@ -1,4 +1,0 @@
-#!/bin/bash
-xwobf /tmp/screen.png
-i3lock -i /tmp/screen.png
-rm /tmp/screen.png
