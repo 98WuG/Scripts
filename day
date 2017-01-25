@@ -3,6 +3,8 @@
 nitrogen --head=0 --set-zoom-fill ~/Scripts/wallpapers/day1.jpg
 nitrogen --head=1 --set-zoom-fill ~/Scripts/wallpapers/day2.jpg
 
+#wal -i ~/Pictures/wallpapers/8hm9uqncuci-anna-popovic.jpg
+
 xrdb -merge ~/.Xresources
 
 light -S 100

@@ -3,6 +3,8 @@
 nitrogen --head=0 --set-zoom-fill ~/Scripts/wallpapers/night1.jpg
 nitrogen --head=1 --set-zoom-fill ~/Scripts/wallpapers/night2.jpg
 
+#wal -i ~/Pictures/wallpapers/uczbvribdvq-teddy-kelley.jpg
+
 xrdb -merge ~/.Xresources_night
 
 light -S 50
