@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # I actually need to find out how to clear notifications properly soon
 pkill dunst && dunst &!

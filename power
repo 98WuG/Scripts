@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 PS3='Please enter your choice: '
 options=("Lock" "Logoff" "Shutdown" "Reboot" "Cancel")

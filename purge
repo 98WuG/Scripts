@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # Free unused memory
 
 flush_mem () { 

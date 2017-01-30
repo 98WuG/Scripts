@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 pkill dunst && dunst &!
 VOLUME="$(echo -e "\uf028") $(pamixer --get-volume)"

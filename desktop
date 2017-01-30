@@ -1,4 +1,4 @@
-#/bin/bash
+#/bin/zsh
 
 # This is so inefficient pls find a better way soon
 pkill dunst && dunst &!

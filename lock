@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/zsh
+
 notify-send "Lock process initiated"
 xwobf /tmp/screen.png
 i3lock -n -i /tmp/screen.png

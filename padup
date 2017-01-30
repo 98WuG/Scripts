@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 bspc config -d focused right_padding $((`bspc config -d focused right_padding` + 25))
 bspc config -d focused left_padding $((`bspc config -d focused left_padding` + 25))
