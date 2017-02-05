@@ -5,6 +5,6 @@ if [[ -z $CURRENT ]];
 then
 	CURRENT="$(echo -e "\uf025") Nothing playing"
 else
-	CURRENT="$(echo -e "\uf025") Now Playing: $CURRENT"
+	CURRENT="$(echo -e "\uf025") $CURRENT"
 fi
-notify-send "$CURRENT"
+notify-send "Currently Playing" "$CURRENT"
