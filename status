@@ -5,11 +5,11 @@ STATUS=""
 # Date status
 DATE="$(echo -e "\uf073") $(date +%b) $(date +%d)"
 
-# Time status 
+# Time status
 TIME="$(echo -e "\uf017") $(date +%I:%M%p)"
 
 
-# Battery status 
+# Battery status
 if [[ $(acpi) == *"Full"* ]];
 then
 	BATTERY="$(echo -e "\uf1e6 \uf240") FULL"
@@ -37,7 +37,7 @@ else
 	fi
 	if [[ $(acpi) != *"Discharging"* ]];
 	then
-		BATTERY="$(echo -e "\uf1e6") $BATTERY"	
+		BATTERY="$(echo -e "\uf1e6") $BATTERY"
 	fi
 fi
 
@@ -50,5 +50,16 @@ else
 	WIRELESS="$WIRELESS DISCONNECTED"
 fi
 
+# Music
+CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
+if [[ -z $CURRENT ]];
+then
+	CURRENT="$(echo -e "\uf025") Nothing playing"
+else
+	PLAYSTATUS="$(mpc | sed -n 2p | cut -d " " -f 1 | sed 's/.$//' | sed 's/^.//' | tr '[:lower:]' '[:upper:]')"
+	POSITION="$(mpc | sed -n 2p | cut -d " " -f 6 | cut -d "/" -f 1)"
+	CURRENT="$(echo -e "\uf025") $PLAYSTATUS: $CURRENT [$POSITION]"
+fi
+
 STATUS="$DATE $TIME $BATTERY $WIRELESS"
-notify-send "$STATUS"
+notify-send "$CURRENT" "$STATUS"
