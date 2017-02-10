@@ -1,26 +1,26 @@
-#!/bin/zsh
+#!/bin/bash
 
-PS3='Please enter your choice: '
-options=("Lock" "Logoff" "Shutdown" "Reboot" "Cancel")
-echo -e "\e[4mPower Menu\e[0m"
-select opt in "${options[@]}"
-do
-	case $opt in
-		"Lock")
-			~/Scripts/lock/lock &
-			;;
-		"Logoff")
-			~/Scripts/exit &
-			;;
-		"Shutdown")
-			shutdown now &
-			;;
-		"Reboot")
-			reboot &
-			;;
-		"Cancel")
-			break
-			;;
-		*) echo invalid option;;
-	esac
-done
+xmodmap -e "keycode 114 = Down"
+xmodmap -e "keycode 113 = Up"
+
+res=$(echo " ; ; ; ; " | rofi -sep ";" -dmenu -p "Power Menu" -lines 1 -columns 5 -separator-style solid -location 0 -width 550 -hide-scrollbar -padding 5 -font "DejaVu Sans Mono 50" -scroll-method 0)
+
+xmodmap -e "keycode 114 = Right"
+xmodmap -e "keycode 113 = Left"
+
+if [ $res = "" ]; then
+    ~/Scripts/lock
+fi
+if [ $res = "" ]; then
+	~/Scripts/exit
+fi
+if [ $res = "" ]; then
+	~/Scripts/lock && systemctl hibernate
+fi
+if [ $res = "" ]; then
+    systemctl reboot
+fi
+if [ $res = "" ]; then
+    systemctl poweroff
+fi
+exit 0
