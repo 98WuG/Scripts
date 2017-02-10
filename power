@@ -9,13 +9,13 @@ xmodmap -e "keycode 114 = Right"
 xmodmap -e "keycode 113 = Left"
 
 if [ $res = "" ]; then
-    ~/Scripts/lock
+    sleep 0.5;~/Scripts/lock
 fi
 if [ $res = "" ]; then
 	~/Scripts/exit
 fi
 if [ $res = "" ]; then
-	~/Scripts/lock && systemctl hibernate
+	sleep 0.5;~/Scripts/lock && systemctl hibernate
 fi
 if [ $res = "" ]; then
     systemctl reboot

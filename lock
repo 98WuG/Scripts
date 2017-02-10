@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-sleep 0.5
 scrot /tmp/screen.png
 notify-send "Lock process initiated"
 convert /tmp/screen.png -scale 5% -scale 2000% /tmp/screen.png
