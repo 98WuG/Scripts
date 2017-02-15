@@ -14,12 +14,12 @@ readarray -t ARRAY <<<"$PARSE"
 DATE="$(echo $JSON | grep -Po  '(?<=\"date\":\")[^,]*(?=\")' | sed 's/<br>/ /g')"
 DAYNAME="$(echo $JSON | grep -Po  '(?<=\"day_type\":{\"name\":\")[^,]*(?=\")' | sed 's/<br>/ /g')"
 DATEPARSED="$(date --date="$DATE" "+%A, %B %d, %Y" | sed 's/<br>/ /g')"
-NOW="$(date "+%T")"
+NOW="$(date "+%H:%M")"
 # loop and print
 for i in "${ARRAY[@]}"
 do
 	# pull out name - replace <br> with space
-	NAME="$(echo $i | grep -Po '(?<=\"name\":\")[^\"]*' | sed 's/<br>/ /g'):" 
+	NAME="$(echo $i | grep -Po '(?<=\"name\":\")[^\"]*' | sed 's/<br>/ /g'):"
 	#now pull times
 	START="$(echo $i | grep -Po '(?<=\"start\":\")[^\"]*' | sed 's/<br>/ /g')"
 	END="$(echo $i | grep -Po '(?<=\"end\":\")[^\"]*' | sed 's/<br>/ /g')"
@@ -27,7 +27,7 @@ do
 	ENDTIME="$(date --date="$END" "+%T" )"
 	if [[ "$NOW" > "$STARTTIME" && "$NOW" < "$ENDTIME" ]]
 	then
-		notify-send "Current period" "$NAME $START-$END"
+		notify-send "Time: $NOW" "$NAME $START-$END"
 	fi
 done
 printf "\n"

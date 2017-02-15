@@ -45,26 +45,26 @@ fi
 WIRELESS="$(echo -e "\uf1eb")"
 if [ $(nmcli dev status | sed -n 2p | cut -d " " -f 11) != "--" ];
 then
-	WIRELESS="$WIRELESS $(nmcli dev status | sed -n 2p | cut -d " " -f 11 | tr '[:lower:]' '[:upper:]')"
+	WIRELESS="$WIRELESS $(nmcli dev status | sed -n 2p | cut -d " " -f 11)"
 else
 	WIRELESS="$WIRELESS DISCONNECTED"
 fi
 
-# Music
-CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
-if [[ -z $CURRENT ]];
-then
-	CURRENT="$(echo -e "\uf025") Nothing playing"
-else
-	PLAYSTATUS="$(mpc | sed -n 2p | cut -d " " -f 1 | sed 's/^.\(.*\).$/\1/' | tr '[:lower:]' '[:upper:]')"
-	POSITION="$(mpc | sed -n 2p | rev | cut -d " " -f 2 | rev )"
-	if [[ "$PLAYSTATUS" == "PLAYING" ]]; then
-		PLAYSTATUS="$(echo -e "\uf04b")"
-	else
-		PLAYSTATUS="$(echo -e "\uf04c")"
-	fi
-	CURRENT="$PLAYSTATUS  $CURRENT [$POSITION]"
-fi
+## Music
+#CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
+#if [[ -z $CURRENT ]];
+#then
+#	CURRENT="$(echo -e "\uf025") Nothing playing"
+#else
+#	PLAYSTATUS="$(mpc | sed -n 2p | cut -d " " -f 1 | sed 's/^.\(.*\).$/\1/' | tr '[:lower:]' '[:upper:]')"
+#	POSITION="$(mpc | sed -n 2p | rev | cut -d " " -f 2 | rev )"
+#	if [[ "$PLAYSTATUS" == "PLAYING" ]]; then
+#		PLAYSTATUS="$(echo -e "\uf04b")"
+#	else
+#		PLAYSTATUS="$(echo -e "\uf04c")"
+#	fi
+#	CURRENT="$PLAYSTATUS  $CURRENT [$POSITION]"
+#fi
 
 STATUS="$DATE $TIME $BATTERY $WIRELESS"
-notify-send "$CURRENT" "$STATUS"
+notify-send "STATUS" "$STATUS"
