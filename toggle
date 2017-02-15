@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ -z "$@" ];
+then
+	echo "No arguments given"
+	exit 1
+else
+	if xinput list | grep -q "$@";
+	then
+		id=`xinput list | grep $@ | sed 's/.*id\=\([0-9]\+\).*/\1/g'`
+
+		declare -i status
+		status=`xinput list-props ${id} | grep Device\ Enabled | sed -e 's/.*\:[ \t]\+//g'`
+
+		if [ 0 -eq ${status} ];
+		then
+			xinput enable ${id}
+			notify-send "$@" "Status: $(echo -e "\uf00c") Enabled"
+		else
+			xinput disable ${id}
+			notify-send "$@" "Status: $(echo -e "\uf00d") Disabled"
+		fi
+	else
+		echo "Device \"$@\" not found"
+		exit 1
+	fi
+fi

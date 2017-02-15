@@ -57,7 +57,7 @@ then
 	CURRENT="$(echo -e "\uf025") Nothing playing"
 else
 	PLAYSTATUS="$(mpc | sed -n 2p | cut -d " " -f 1 | sed 's/^.\(.*\).$/\1/' | tr '[:lower:]' '[:upper:]')"
-	POSITION="$(mpc | sed -n 2p | rev | cut -d " " -f 2 | rev | cut -d "/" -f 1)"
+	POSITION="$(mpc | sed -n 2p | rev | cut -d " " -f 2 | rev )"
 	if [[ "$PLAYSTATUS" == "PLAYING" ]]; then
 		PLAYSTATUS="$(echo -e "\uf04b")"
 	else
