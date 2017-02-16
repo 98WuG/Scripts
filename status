@@ -43,9 +43,9 @@ fi
 
 # Network status
 WIRELESS="$(echo -e "\uf1eb")"
-if [ $(nmcli dev status | sed -n 2p | cut -d " " -f 11) != "--" ];
+if [ $(nmcli dev status | sed -n 2p | rev | cut -d " " -f 5 | rev) != "--" ];
 then
-	WIRELESS="$WIRELESS $(nmcli dev status | sed -n 2p | cut -d " " -f 11)"
+	WIRELESS="$WIRELESS $(nmcli dev status | sed -n 2p | rev | cut -d " " -f 5 | rev)"
 else
 	WIRELESS="$WIRELESS DISCONNECTED"
 fi

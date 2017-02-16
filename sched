@@ -25,9 +25,13 @@ do
 	END="$(echo $i | grep -Po '(?<=\"end\":\")[^\"]*' | sed 's/<br>/ /g')"
 	STARTTIME="$(date --date="$START" "+%T" )"
 	ENDTIME="$(date --date="$END" "+%T" )"
+	TIMELEFT=`expr $(date --date="$END" "+%s") - $(date --date="$NOW" "+%s")`
+	HOURS=`expr $TIMELEFT / 3600`
+	MINS=`expr $TIMELEFT % 3600 / 60`
+	TIMELEFT="$HOURS:$MINS"
 	if [[ "$NOW" > "$STARTTIME" && "$NOW" < "$ENDTIME" ]]
 	then
-		notify-send "Time: $NOW" "$NAME $START-$END"
+		notify-send "Remaining: $TIMELEFT" "$NAME $START-$END"
 	fi
 done
 printf "\n"
