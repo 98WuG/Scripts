@@ -28,6 +28,10 @@ do
 	TIMELEFT=`expr $(date --date="$END" "+%s") - $(date --date="$NOW" "+%s")`
 	HOURS=`expr $TIMELEFT / 3600`
 	MINS=`expr $TIMELEFT % 3600 / 60`
+	if [ $MINS -lt 10 ];
+	then
+		MINS="0$MINS"
+	fi
 	TIMELEFT="$HOURS:$MINS"
 	if [[ "$NOW" > "$STARTTIME" && "$NOW" < "$ENDTIME" ]]
 	then
