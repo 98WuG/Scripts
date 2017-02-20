@@ -1,5 +1,16 @@
 #!/bin/zsh
 
 pkill dunst && dunst &!
+
+default=$(pacmd list-sinks | awk '/* index:/{print$3}')
+
+if [ "$1" = "up" ];
+then
+	pactl set-sink-mute $default false
+	pactl set-sink-volume $default +2%
+else
+	pactl set-sink-mute $default false
+	pactl set-sink-volume $default -2%
+fi
 VOLUME="$(echo -e "\uf028") $(pamixer --get-volume)"
 notify-send "$VOLUME"
