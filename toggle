@@ -7,18 +7,24 @@ then
 else
 	if xinput list | grep -q -i "$1";
 	then
-		id=`xinput list | grep -i "$1" | sed 's/.*id\=\([0-9]\+\).*/\1/g'`
-
-		declare -i status
-		status=`xinput list-props ${id} | grep Device\ Enabled | sed -e 's/.*\:[ \t]\+//g'`
-
-		if [ 0 -eq ${status} ];
+		if echo "$1" | grep -q -i "keyboard";
 		then
-			xinput enable ${id}
-			notify-send "$1" "Status: $(echo -e "\uf00c") Enabled"
+			echo -e "Please think about your life choices\nDo not toggle the keyboard"
+			exit 1
 		else
-			xinput disable ${id}
-			notify-send "$1" "Status: $(echo -e "\uf00d") Disabled"
+			id=`xinput list | grep -i "$1" | sed 's/.*id\=\([0-9]\+\).*/\1/g'`
+
+			declare -i status
+			status=`xinput list-props ${id} | grep Device\ Enabled | sed -e 's/.*\:[ \t]\+//g'`
+
+			if [ 0 -eq ${status} ];
+			then
+				xinput enable ${id}
+				notify-send "$1" "Status: $(echo -e "\uf00c") Enabled"
+			else
+				xinput disable ${id}
+				notify-send "$1" "Status: $(echo -e "\uf00d") Disabled"
+			fi
 		fi
 	else
 		echo "Device \"$@\" not found"
