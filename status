@@ -52,6 +52,18 @@ else
 	WIRELESS="$WIRELESS $NETWORK"
 fi
 
+# Volume
+MUTESTATUS="$(pamixer --get-mute)"
+if [ $MUTESTATUS = "false" ];
+then
+	VOLUME="$(echo -e "\uf028") $(pamixer --get-volume)"
+else
+	VOLUME="$(echo -e "\uf026") MUTE"
+fi
+
+# Brightness
+BRIGHTNESS="$(echo -e "\uf185") $(light -G | sed 's/...$//')"
+
 ## Music
 #CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
 #if [[ -z $CURRENT ]];
@@ -68,5 +80,5 @@ fi
 #	CURRENT="$PLAYSTATUS  $CURRENT [$POSITION]"
 #fi
 
-STATUS="$DATE $TIME $BATTERY $WIRELESS"
+STATUS="$DATE $TIME $BATTERY\n$WIRELESS $BRIGHTNESS $VOLUME"
 notify-send "STATUS" "$STATUS"
