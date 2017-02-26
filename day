@@ -7,6 +7,6 @@ nitrogen --head=1 --set-zoom-fill ~/Scripts/wallpapers/day2.jpg
 
 #wal -i ~/Pictures/wallpapers/8hm9uqncuci-anna-popovic.jpg
 
-light -S 100
+light -S 75
 
 notify-send "Day mode"
