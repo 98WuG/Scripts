@@ -1,5 +1,11 @@
 #!/bin/zsh
 
-notify-send "Backup initialized"
-sudo rsync -aAX --info=progress2 --delete --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/run/media/*","/home/*/.cache/*","/home/*/.thumbnails/*","/home/*/.local/share/Trash/*","/home/*/.gvfs"} / /run/media/jerry/WD750/ArchBackup
-notify-send "Backup finished"
+if [ -z "$@" ];
+then
+	echo "No arguments given, exiting..."
+	exit 1
+else
+	notify-send "Backup initialized"
+	sudo rsync -aAX --info=progress2 --delete --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/run/media/*","/home/*/.cache/*","/home/*/.thumbnails/*","/home/*/.local/share/Trash/*","/home/*/.gvfs"} / /run/media/jerry/WD750/$1Backup
+	notify-send "Backup finished"
+fi

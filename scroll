@@ -1,10 +1,12 @@
 #!/bin/sh
 
-if [ "$(xinput get-button-map 13)" = "1 2 3 4 5 6 7 " ];
+TID=`xinput list | grep -i "touchpad" | sed 's/.*id\=\([0-9]\+\).*/\1/g'`
+
+if xinput get-button-map $TID | grep -q -i "4 5";
 then
-	xinput set-button-map 13 1 2 3 5 4 6 7
+	xinput set-button-map $TID 1 2 3 5 4 6 7
 	notify-send "Natural scrolling" "Enabled"
 else
-	xinput set-button-map 13 1 2 3 4 5 6 7
+	xinput set-button-map $TID 1 2 3 4 5 6 7
 	notify-send "Natural scrolling" "Disabled"
 fi

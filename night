@@ -2,11 +2,15 @@
 
 xrdb -merge ~/.Xresources_night
 
-nitrogen --head=0 --set-zoom-fill ~/Scripts/wallpapers/night1.jpg
-nitrogen --head=1 --set-zoom-fill ~/Scripts/wallpapers/night2.jpg
+
+
+#nitrogen --head=0 --set-zoom-fill ~/Scripts/wallpapers/night1.jpg
+#nitrogen --head=1 --set-zoom-fill ~/Scripts/wallpapers/night2.jpg
 
 #wal -i ~/Pictures/wallpapers/uczbvribdvq-teddy-kelley.jpg
 
 light -S 50
 
 notify-send "Night mode"
+
+hsetroot -full ~/Scripts/wallpapers/night.jpg
