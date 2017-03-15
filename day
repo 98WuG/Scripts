@@ -11,4 +11,9 @@ light -S 75
 
 notify-send "Day mode"
 
-hsetroot -full ~/Scripts/wallpapers/day.jpg
+if xrandr | grep -q -i "HDMI-1 disconnected";
+then
+	hsetroot -full ~/Scripts/wallpapers/day1.jpg
+else
+	hsetroot -full ~/Scripts/wallpapers/day.jpg
+fi
