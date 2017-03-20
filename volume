@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 pkill dunst && dunst &!
 
@@ -8,9 +8,20 @@ if [ "$1" = "up" ];
 then
 	pactl set-sink-mute $default false
 	pactl set-sink-volume $default +2%
-else
+elif [ "$1" = "down" ];
+then
 	pactl set-sink-mute $default false
 	pactl set-sink-volume $default -2%
+else
+	pactl set-sink-mute $default toggle
+	if [ "$(pamixer --get-mute)" = "true" ];
+	then
+		notify-send "$(echo -e "\uf026") MUTE"
+	fi
 fi
-VOLUME="$(echo -e "\uf028") $(pamixer --get-volume)"
-notify-send "$VOLUME"
+
+if [ "$(pamixer --get-mute)" = "false" ];
+then
+	VOLUME="$(echo -e "\uf028") $(pamixer --get-volume)"
+	notify-send "$VOLUME"
+fi

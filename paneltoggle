@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # I know this is inefficient af but I can't find a better way
 if pgrep "panel_bar" > /dev/null
