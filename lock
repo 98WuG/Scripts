@@ -1,7 +1,8 @@
-#!/bin/zsh
+#!/bin/bash
 
 scrot /tmp/screen.png
 notify-send "Lock process initiated"
-convert /tmp/screen.png -scale 5% -scale 2000% /tmp/screen.png
+#convert /tmp/screen.png -scale 5% -scale 2000% /tmp/screen.png
+xwobf -s 20 /tmp/screen.png
 i3lock -n -i /tmp/screen.png
 rm /tmp/screen.png
