@@ -5,14 +5,14 @@ then
 	echo "No arguments given"
 	exit 1
 else
-	if xinput list | grep -q -i "$1";
+	if xinput list | grep -q -i "$@";
 	then
-		if echo "$1" | grep -q -i "keyboard";
+		if echo "$@" | grep -q -i "keyboard";
 		then
 			echo -e "Please think about your life choices\nDo not toggle the keyboard"
 			exit 1
 		else
-			id=`xinput list | grep -i "$1" | sed 's/.*id\=\([0-9]\+\).*/\1/g'`
+			id=`xinput list | grep -i "$@" | sed 's/.*id\=\([0-9]\+\).*/\1/g'`
 
 			declare -i status
 			status=`xinput list-props ${id} | grep Device\ Enabled | sed -e 's/.*\:[ \t]\+//g'`
@@ -20,10 +20,10 @@ else
 			if [ 0 -eq ${status} ];
 			then
 				xinput enable ${id}
-				notify-send "$1" "Status: $(echo -e "\uf00c") Enabled"
+				notify-send "$@" "Status: $(echo -e "\uf00c") Enabled"
 			else
 				xinput disable ${id}
-				notify-send "$1" "Status: $(echo -e "\uf00d") Disabled"
+				notify-send "$@" "Status: $(echo -e "\uf00d") Disabled"
 			fi
 		fi
 	else
