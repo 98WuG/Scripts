@@ -13,7 +13,7 @@ light -S 50
 
 notify-send "Night mode"
 
-if xrandr | grep -q -i "HDMI-1 disconnected";
+if xrandr | grep -q -i "HDMI1 disconnected";
 then
     hsetroot -full ~/Scripts/wallpapers/night1.jpg
 else

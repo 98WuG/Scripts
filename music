@@ -7,4 +7,4 @@ then
 else
 	CURRENT="$(echo -e "\uf025") $CURRENT"
 fi
-notify-send "Currently Playing" "$CURRENT"
+twmnc -t "Currently Playing" -c "$CURRENT" --id 3

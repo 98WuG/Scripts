@@ -1,11 +1,8 @@
 #/bin/zsh
 
-# This is so inefficient pls find a better way soon
-pkill dunst && dunst &!
-
-DESKTOPS="$(bspc query -D -m focused --names | sed ':a;N;$!ba;s/\n/\t/g')"
+DESKTOPS="$(bspc query -D -m focused --names | sed ':a;N;$!ba;s/\n/ /g')"
 CURRENT="$(bspc query -D -d focused --names)"
 CARET=$(echo -e "\uf0da")
 DESKTOPS=$(echo -e "$DESKTOPS" | sed "s/$CURRENT/$CARET $CURRENT/g")
 
-notify-send "Monitor $(bspc query -M -d focused --names)" "$DESKTOPS"
+twmnc -c "$DESKTOPS" --id 1

@@ -1,7 +1,4 @@
 #!/bin/zsh
 
-# I actually need to find out how to clear notifications properly soon
-pkill dunst && dunst &!
-
 BRIGHTNESS="$(echo -e "\uf185") $(light -G | sed 's/...$//')"
-notify-send "$BRIGHTNESS"
+twmnc -c "$BRIGHTNESS" --id 4

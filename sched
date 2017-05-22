@@ -35,7 +35,7 @@ do
 	TIMELEFT="$HOURS:$MINS"
 	if [[ "$NOW" > "$STARTTIME" && "$NOW" < "$ENDTIME" ]]
 	then
-		notify-send "Remaining: $TIMELEFT" "$NAME $START-$END"
+		twmnc -t "Remaining: $TIMELEFT" -c "$NAME $START-$END"
 	fi
 done
 printf "\n"
