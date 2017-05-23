@@ -81,4 +81,4 @@ BRIGHTNESS="$(echo -e "\uf185") $(light -G | sed 's/...$//')"
 #fi
 
 STATUS="$DATE $TIME $WIRELESS $BATTERY $BRIGHTNESS $VOLUME"
-twmnc -d 3000 -c "$STATUS" --id 2
+twmnc -d 4000 -c "$STATUS" --id 2

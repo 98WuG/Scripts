@@ -1,6 +1,7 @@
 #!/bin/zsh
 
-CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
+#CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
+CURRENT="$(mpc current)"
 if [[ -z $CURRENT ]];
 then
 	CURRENT="$(echo -e "\uf025") Nothing playing"

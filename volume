@@ -23,5 +23,5 @@ fi
 if [ "$(pamixer --get-mute)" = "false" ];
 then
 	VOLUME="$(echo -e "\uf028") $(pamixer --get-volume)"
-	notify-send "$VOLUME"
+	twmnc -c "$VOLUME" --id 5
 fi
