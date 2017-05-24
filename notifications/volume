@@ -16,7 +16,7 @@ else
 	pactl set-sink-mute $default toggle
 	if [ "$(pamixer --get-mute)" = "true" ];
 	then
-		notify-send "$(echo -e "\uf026") MUTE"
+		twmnc -c "$(echo -e "\uf026") MUTE" --id 5
 	fi
 fi
 

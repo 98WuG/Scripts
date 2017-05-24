@@ -43,8 +43,7 @@ fi
 
 # Network status
 WIRELESS="$(echo -e "\uf1eb")"
-NETWORK="$(nmcli | sed -n 1p | grep "connected to" | sed 's/^.*to //g')"
-echo $NETWORK
+NETWORK="$(nmcli | grep "wlp1s0: connected to" | sed 's/^.*to //g')"
 if [ -z "$NETWORK" ];
 then
 	WIRELESS="$WIRELESS DISCONNECTED"
@@ -64,6 +63,17 @@ fi
 # Brightness
 BRIGHTNESS="$(echo -e "\uf185") $(light -G | sed 's/...$//')"
 
+# VPN
+VPN="$(nmcli | grep "tun0: connected to" | sed 's/^.*to //g')"
+echo "$VPN"
+if [ -z "$VPN" ];
+then
+	VPN="$(echo -e "\uf13e") VPN DOWN"
+else
+	VPN="$(echo -e "\uf023") $VPN"
+fi
+
+
 ## Music
 #CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
 #if [[ -z $CURRENT ]];
@@ -80,5 +90,5 @@ BRIGHTNESS="$(echo -e "\uf185") $(light -G | sed 's/...$//')"
 #	CURRENT="$PLAYSTATUS  $CURRENT [$POSITION]"
 #fi
 
-STATUS="$DATE $TIME $WIRELESS $BATTERY $BRIGHTNESS $VOLUME"
+STATUS="$DATE $TIME $WIRELESS $VPN $BATTERY"
 twmnc -d 4000 -c "$STATUS" --id 2

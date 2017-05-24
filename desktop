@@ -1,8 +1,0 @@
-#/bin/zsh
-
-DESKTOPS="$(bspc query -D -m focused --names | sed ':a;N;$!ba;s/\n/ /g')"
-CURRENT="$(bspc query -D -d focused --names)"
-CARET=$(echo -e "\uf0da")
-DESKTOPS=$(echo -e "$DESKTOPS" | sed "s/$CURRENT/$CARET $CURRENT/g")
-
-twmnc -c "$DESKTOPS" --id 1
