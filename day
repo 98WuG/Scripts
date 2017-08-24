@@ -13,7 +13,7 @@ notify-send "Day mode"
 
 #if xrandr | grep -q -i "HDMI1 disconnected";
 #then
-	hsetroot -full ~/Scripts/wallpapers/day1.jpg
+	hsetroot -full ~/Scripts/wallpapers/rickandmortynight.png
 #else
 #	hsetroot -full ~/Scripts/wallpapers/day.jpg
 #fi
