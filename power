@@ -7,6 +7,9 @@ xmodmap -e "keycode 113 = Left"
 
 res=$(echo " ; ; ; ; " | rofi -sep ";" -dmenu -p "Power Menu" -lines 1 -columns 5 -separator-style solid -location 0 -width 225 -hide-scrollbar -padding 3 -font "DejaVu Sans Mono 20" -scroll-method 0)
 
+if [ -z "$res" ]; then
+    exit 0
+fi
 if [ $res = "" ]; then
     ~/Scripts/lock
 fi
