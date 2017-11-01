@@ -1,0 +1,3 @@
+#!/bin/bash
+
+twmnc -t "Active Window" -c "$(xtitle)" --id 6

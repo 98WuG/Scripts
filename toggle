@@ -20,10 +20,10 @@ else
 			if [ 0 -eq ${status} ];
 			then
 				xinput enable ${id}
-				notify-send "$@" "Status: $(echo -e "\uf00c") Enabled"
+				twmnc -t "$@" -c "$(echo -e "\uf00c") Enabled" --id 7
 			else
 				xinput disable ${id}
-				notify-send "$@" "Status: $(echo -e "\uf00d") Disabled"
+				twmnc -t "$@" -c "$(echo -e "\uf00d") Disabled" --id 7
 			fi
 		fi
 	else

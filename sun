@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 LAT=38.933868N
 LONG=77.177260W
