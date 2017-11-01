@@ -1,6 +1,6 @@
 #! /bin/bash
 
-PANEL_HEIGHT=35
+PANEL_HEIGHT=20
 
 if pgrep panel_bar > /dev/null ; then
 	printf "%s\n" "The panel is already running." >&2
@@ -12,15 +12,14 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 
-bspc config top_padding 85
+bspc config top_padding 45
 bspc subscribe report > "$PANEL_FIFO" &
 #xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 
-pwd
 . panel_colors
 
-panel_bar < "$PANEL_FIFO" | lemonbar -a 12 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "Inconsolata-10" -f "fontawesome-10" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
+panel_bar < "$PANEL_FIFO" | lemonbar -a 12 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "Inconsolata-10" -f "fontawesome-11" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
 
 wid=$(xdo id -a "$PANEL_WM_NAME")
 tries_left=20

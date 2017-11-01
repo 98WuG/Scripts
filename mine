@@ -1,0 +1,22 @@
+#!/bin/sh
+
+export GPU_FORCE_64BIT_PR=0
+export GPU_MAX_HEAP_SIZE=100
+export GPU_USE_SYNC_OBJECTS=1
+export GPU_MAX_ALLOC_PERCENT=100
+export GPU_SINGLE_ALLOC_PERCENT=100
+export LD_PRELOAD=libcurl.so.4.0.0
+
+nvidia-settings -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=1450'
+nvidia-settings -a '[gpu:0]/GPUGraphicsClockOffset[3]=-200'
+nvidia-settings -a '[gpu:0]/GPUFanControlState=1'
+nvidia-settings -a '[fan:0]/GPUTargetFanSpeed=65'
+sudo nvidia-smi -pl 100
+
+#~/github/Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner.v9.7.-.LINUX/ethdcrminer64 -epool eu1.ethermine.org:4444 -ewal 0x791f02509b5Aad97A0c7d9459ffe22E3B86517c2.rig1 -epsw x -dpool stratum+tcp://sia-eu1.nanopool.org:7777 -dwal c7b67057ce5e400f8f019da5f49d3c4951926f21bf895f4ed326454695539083adfde2b05a20/rig1/gwu02251250@gmail.com -dcoin sia -dcri 40 -allpools 1
+~/github/cpp-ethereum/build/ethminer/ethminer --farm-recheck 200 -U -S eu1.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0x791f02509b5Aad97A0c7d9459ffe22E3B86517c2.rig1
+
+nvidia-settings -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=0'
+nvidia-settings -a '[gpu:0]/GPUGraphicsClockOffset[3]=0'
+nvidia-settings -a '[gpu:0]/GPUFanControlState=0'
+sudo nvidia-smi -pl 120

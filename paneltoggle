@@ -5,9 +5,8 @@ if pgrep "panel_bar" > /dev/null
 then
 	# If running, hide (kill) it
 	pkill panel_bar &
-	bspc config top_padding 50
+	bspc config top_padding 25
 else
 	# If it's not running, show (start) it
 	panel &
-	bspc config top_padding 85
 fi
