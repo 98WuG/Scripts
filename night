@@ -13,9 +13,11 @@ light -S 50
 
 notify-send "Night mode"
 
+feh --bg-fill ~/Pictures/YourName/YourName1.png
+
 #if xrandr | grep -q -i "HDMI1 disconnected";
 #then
-    hsetroot -full ~/Scripts/wallpapers/rickandmortynight.png
+    #hsetroot -full ~/Scripts/wallpapers/night3.jpg
 #else
 #    hsetroot -full ~/Scripts/wallpapers/night.jpg
 #fi

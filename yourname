@@ -1,0 +1,7 @@
+#!/bin/bash
+
+while true
+do
+	feh --randomize --bg-fill ~/Pictures/YourName
+	sleep 1h
+done
