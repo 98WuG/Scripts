@@ -9,5 +9,5 @@ else
 	CARET=$(echo -e "\uf0da")
 	DESKTOPS=$(echo -e "$DESKTOPS" | sed "s/$CURRENT/$CARET $CURRENT/g")
 
-	twmnc -c "$DESKTOPS" --id 1
+	twmnc -t "Monitor $(bspc query -M -d focused --names)" -c "$DESKTOPS" --id 1
 fi
