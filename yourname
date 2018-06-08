@@ -2,6 +2,6 @@
 
 while true
 do
-	feh --randomize --bg-fill ~/Pictures/YourName
-	sleep 1h
+	feh --randomize --bg-fill ~/Dropbox/YourName
+	sleep 1
 done

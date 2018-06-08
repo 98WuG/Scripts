@@ -43,8 +43,8 @@ fi
 
 # Network status
 WIRELESS="$(echo -e "\uf1eb")"
-NETWORK="$(nmcli | grep "wlp1s0: connected to" | sed 's/^.*to //g')"
-NETWORK="$(nmcli | grep "connected to Wired" | cut -d' ' -f4)"
+NETWORK="$(nmcli | grep "wlp5s0: connected to" | sed 's/^.*to //g')"
+#NETWORK="$NETWORK "$(nmcli | grep "connected to Wired" | cut -d' ' -f4)""
 if [ -z "$NETWORK" ];
 then
 	WIRELESS="$WIRELESS DISCONNECTED"

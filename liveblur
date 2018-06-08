@@ -1,0 +1,10 @@
+#!/bin/bash
+while true
+do
+	win="$(lsw)"
+	if [[ $win ]]; then
+		feh --bg-fill ~/Dropbox/YourName/YourName5Blurred.png
+	else
+		feh --bg-fill ~/Dropbox/YourName/YourName5.png
+	fi
+done
