@@ -17,7 +17,9 @@ if [ $res = "" ]; then
 	~/Scripts/exit
 fi
 if [ $res = "" ]; then
-	~/Scripts/lock && systemctl suspend
+	~/Scripts/lock &
+	sleep 2
+	systemctl suspend
 fi
 if [ $res = "" ]; then
     systemctl reboot
