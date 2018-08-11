@@ -39,7 +39,7 @@ else
 	then
 		BATTERY="$(echo -e "\uf0e7") $BATTERY"
 	fi
-	BATTERY="$BATTERY $(echo -e "\uf1e6") $(acpi | cut -d' ' -f5 | rev | cut -d':' -f2- | rev | sed 's/:/h/')m"
+	BATTERY="$BATTERY $(echo -e "\uf1e6") $(acpi | cut -d' ' -f5 | rev | cut -d':' -f2- | rev)"
 fi
 
 # Network status

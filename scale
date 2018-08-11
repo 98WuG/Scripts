@@ -1,0 +1,7 @@
+#!/bin/bash
+
+xrandr --output LVDS1 --scale "$1x$1"
+pkill sun
+~/Scripts/sun &
+pkill twmnd
+twmnd &
