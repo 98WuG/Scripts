@@ -1,0 +1,39 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+then
+	echo "Please run me as root"
+	exit 2
+fi
+
+unset name
+
+print_usage() {
+	printf 'Usage: %s [-h] [-g] [-s <int>] [-e <int>]\n
+    -h \t\t\tPrint this help
+    -g \t\t\tGet current charge thresholds
+    -s <int>\t\tSet start threshold
+    -e <int>\t\tSet end threshold' $0;
+}
+
+while getopts 'gs:e:h' flag
+do
+	case "${flag}" in
+		g) start=$(( 16#$(sudo ectool -d | grep b0 | cut -d' ' -f2) ))
+			stop=$(( 16#$(sudo ectool -d | grep b0 | cut -d' ' -f3) ))
+			echo -e "Start threshold: $start%\nStop threshold: $stop%"
+			;;
+		s) printf -v start '%x' "${OPTARG}"
+			echo -en "Start: ${OPTARG}% (hex: $start)"
+			sudo ectool -w 0xb0 -z 0x$start
+			;;
+		e) printf -v end '%x' "${OPTARG}"
+			echo -en "End: ${OPTARG}% (hex: $end)"
+			sudo ectool -w 0xb1 -z 0x$end
+			;;
+		h) print_usage
+			;;
+		*) print_usage
+			exit 1;;
+	esac
+done
