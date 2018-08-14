@@ -1,9 +1,27 @@
 #!/bin/bash
 
-echo "New structure:"
-git remote set-url origin git@git.geraldwu.com:98WuG/$1
-git remote set-url origin --add git@github.com:98WuG/$1
-git remote add origin-github git@github.com:98WuG/$1
+if [ -z "$1" ];
+then
+	REPO="$(pwd | rev | cut -d'/' -f1 | rev)"
+	echo "No argument provided! Defaulting to current directory name ($REPO)..."
+else
+	REPO="$@"
+fi
+
+git remote set-url origin git@git.geraldwu.com:98WuG/$REPO
+git remote set-url origin --add git@github.com:98WuG/$REPO
+git remote add origin-github git@github.com:98WuG/$REPO
+
+echo -e "\nNew structure:"
 git remote -v
-echo "Done"
-echo "Run \`git push\` when ready"
+echo ""
+
+read -r -p "Does this look okay? [y/N] " response
+case "$response" in
+	[yY][eE][sS]|[yY])
+		git push
+		;;
+	*)
+		echo "Run \`git push\` to push changes when ready"
+		;;
+esac
