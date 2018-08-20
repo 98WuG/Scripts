@@ -16,7 +16,7 @@ echo -e "\nNew structure:"
 git remote -v
 echo ""
 
-read -r -p "Does this look okay? [y/N] " response
+read -r -p "Does this look okay? (Note: This will push to all remotes) [y/N] " response
 case "$response" in
 	[yY][eE][sS]|[yY])
 		git push
