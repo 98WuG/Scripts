@@ -75,6 +75,9 @@ else
 	VPN="$(echo -e "\uf023") $VPN"
 fi
 
+TEMP="$(sensors | grep "Package id 0" | awk '{ print substr($4,2) }')"
+TEMP="$(echo -e "\uf2db") $TEMP"
+
 
 ## Music
 #CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
@@ -92,5 +95,5 @@ fi
 #	CURRENT="$PLAYSTATUS  $CURRENT [$POSITION]"
 #fi
 
-STATUS="$DATE $TIME $WIRELESS $VPN $BATTERY"
+STATUS="$DATE $TIME $WIRELESS $VPN $BATTERY $TEMP"
 twmnc -d 4000 -c "$STATUS" --id 2
