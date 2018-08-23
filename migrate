@@ -3,7 +3,16 @@
 if [ -z "$1" ];
 then
 	REPO="$(pwd | rev | cut -d'/' -f1 | rev)"
-	echo "No argument provided! Defaulting to current directory name ($REPO)..."
+	echo -e "No argument provided!\nDefaulting to current directory name ($REPO)..."
+	read -r -p "Is this okay? [y/N] " response
+	case "$response" in
+		[yY][eE][sS]|[yY])
+			;;
+		*)
+			echo "Please re-run as \`migrate \$repo-name\`"
+			exit 1
+			;;
+	esac
 else
 	REPO="$@"
 fi
