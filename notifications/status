@@ -49,7 +49,8 @@ fi
 
 # Network status
 WIRELESS="$(echo -e "\uf1eb")"
-NETWORK="$(nmcli | grep "wlp2s0: connected to" | sed 's/^.*to //g')"
+NETWORK="$(nmcli | head -n1 | grep "connected to" | sed 's/^.*to //g')"
+#NETWORK="$(nmcli | grep "wlp2s0: connected to" | sed 's/^.*to //g')"
 #NETWORK="$NETWORK "$(nmcli | grep "connected to Wired" | cut -d' ' -f4)""
 if [ -z "$NETWORK" ];
 then
