@@ -3,10 +3,10 @@
 STATUS=""
 
 # Date status
-DATE="$(echo -e "\uf073") $(date +%b) $(date +%d)"
+DATE="$(echo -e "\uf073") $(date +'%b %d') "
 
 # Time status
-TIME="$(echo -e "\uf017") $(date +%I:%M%p)"
+TIME="$(echo -e "\uf017") $(date +%I:%M%p) "
 
 
 # Battery status
@@ -43,7 +43,7 @@ else
 		then
 			BATTERY="$(echo -e "\uf0e7") $BATTERY"
 		fi
-		BATTERY="$BATTERY $(echo -e "\uf1e6") $(acpi | cut -d' ' -f5 | rev | cut -d':' -f2- | rev)"
+		BATTERY="$BATTERY $(echo -e "\uf1e6") $(acpi | cut -d' ' -f5 | rev | cut -d':' -f2- | rev) "
 	fi
 fi
 
@@ -54,31 +54,31 @@ NETWORK="$(nmcli | head -n1 | grep "connected to" | sed 's/^.*to //g')"
 #NETWORK="$NETWORK "$(nmcli | grep "connected to Wired" | cut -d' ' -f4)""
 if [ -z "$NETWORK" ];
 then
-	WIRELESS="$WIRELESS DISCONNECTED"
+	WIRELESS="$WIRELESS DISCONNECTED "
 else
-	WIRELESS="$WIRELESS $NETWORK"
+	WIRELESS="$WIRELESS $NETWORK "
 fi
 
 # Volume
 MUTESTATUS="$(pamixer --get-mute)"
 if [ $MUTESTATUS = "false" ];
 then
-	VOLUME="$(echo -e "\uf028") $(pamixer --get-volume)"
+	VOLUME="$(echo -e "\uf028") $(pamixer --get-volume) "
 else
-	VOLUME="$(echo -e "\uf026") MUTE"
+	VOLUME="$(echo -e "\uf026") MUTE "
 fi
 
 # Brightness
-BRIGHTNESS="$(echo -e "\uf185") $(light -G | sed 's/...$//')"
+BRIGHTNESS="$(echo -e "\uf185") $(light -G | sed 's/...$//') "
 
 # VPN
 VPN="$(nmcli | grep "tun0: connected to" | sed 's/^.*to //g')"
 echo "$VPN"
 if [ -z "$VPN" ];
 then
-	VPN="$(echo -e "\uf13e") VPN DOWN"
+	VPN="$(echo -e "\uf13e") VPN DOWN "
 else
-	VPN="$(echo -e "\uf023") $VPN"
+	VPN="$(echo -e "\uf023") $VPN "
 fi
 
 TEMP="$(sensors | grep "Package id 0" | awk '{ print substr($4,2) }')"
@@ -101,5 +101,5 @@ TEMP="$(echo -e "\uf2db") $TEMP"
 #	CURRENT="$PLAYSTATUS  $CURRENT [$POSITION]"
 #fi
 
-STATUS="$DATE $TIME $WIRELESS $VPN $BATTERY $TEMP"
+STATUS="$DATE$TIME$WIRELESS$VPN$BATTERY$TEMP"
 twmnc -d 4000 -c "$STATUS" --id 2
