@@ -10,36 +10,41 @@ TIME="$(echo -e "\uf017") $(date +%I:%M%p)"
 
 
 # Battery status
-if [[ $(acpi) == *"Full"* ]];
+if [[ "$(hostname)" == *"Desktop"* ]];
 then
-	BATTERY="$(echo -e "\uf1e6 \uf240") FULL"
+	BATTERY=""
 else
-	if [[ $(acpi) == *"Unknown"* ]];
+	if [[ $(acpi) == *"Full"* ]];
 	then
-		BATTERY="$(acpi | cut -d ' ' -f 4 | sed 's/.$//')"
+		BATTERY="$(echo -e "\uf1e6 \uf240") FULL"
 	else
-		BATTERY="$(acpi | cut -d ' ' -f 4 | sed 's/..$//')"
+		if [[ $(acpi) == *"Unknown"* ]];
+		then
+			BATTERY="$(acpi | cut -d ' ' -f 4 | sed 's/.$//')"
+		else
+			BATTERY="$(acpi | cut -d ' ' -f 4 | sed 's/..$//')"
+		fi
+		if [ "$BATTERY" -gt 80 ];
+		then
+			BATTERY="$(echo -e "\uf240") "$BATTERY"%"
+		elif [ "$BATTERY" -gt 60 ];
+		then
+			BATTERY="$(echo -e "\uf241") "$BATTERY"%"
+		elif [ "$BATTERY" -gt 40 ];
+		then
+			BATTERY="$(echo -e "\uf242") "$BATTERY"%"
+		elif [ "$BATTERY" -gt 20 ];
+		then
+			BATTERY="$(echo -e "\uf243") $BATTERY%"
+		else
+			BATTERY="$(echo -e "\uf244") $BATTERY%"
+		fi
+		if [[ $(acpi) != *"Discharging"* ]];
+		then
+			BATTERY="$(echo -e "\uf0e7") $BATTERY"
+		fi
+		BATTERY="$BATTERY $(echo -e "\uf1e6") $(acpi | cut -d' ' -f5 | rev | cut -d':' -f2- | rev)"
 	fi
-	if [ $BATTERY -gt 80 ];
-	then
-		BATTERY="$(echo -e "\uf240") $BATTERY%"
-	elif [ $BATTERY -gt 60 ];
-	then
-		BATTERY="$(echo -e "\uf241") $BATTERY%"
-	elif [ $BATTERY -gt 40 ];
-	then
-		BATTERY="$(echo -e "\uf242") $BATTERY%"
-	elif [ $BATTERY -gt 20 ];
-	then
-		BATTERY="$(echo -e "\uf243") $BATTERY%"
-	else
-		BATTERY="$(echo -e "\uf244") $BATTERY%"
-	fi
-	if [[ $(acpi) != *"Discharging"* ]];
-	then
-		BATTERY="$(echo -e "\uf0e7") $BATTERY"
-	fi
-	BATTERY="$BATTERY $(echo -e "\uf1e6") $(acpi | cut -d' ' -f5 | rev | cut -d':' -f2- | rev)"
 fi
 
 # Network status
