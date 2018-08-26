@@ -13,10 +13,11 @@ print_usage() {
     -h \t\t\tPrint this help
     -g \t\t\tGet current charge thresholds
     -s <int>\t\tSet start threshold
-    -e <int>\t\tSet end threshold' $0;
+    -e <int>\t\tSet end threshold
+    -f \t\t\tSet full charge threshold (95%%/100%%)' $0;
 }
 
-while getopts 'gs:e:h' flag
+while getopts 'gfs:e:h' flag
 do
 	case "${flag}" in
 		g) start=$(( 16#$(sudo ectool -d | grep b0 | cut -d' ' -f2) ))
@@ -29,6 +30,12 @@ do
 			;;
 		e) printf -v end '%x' "${OPTARG}"
 			echo -en "End: ${OPTARG}% (hex: $end)"
+			sudo ectool -w 0xb1 -z 0x$end
+			;;
+		f) printf -v start '%x' "95"
+			printf -v end '%x' "100"
+			echo -en "Start: 95% (hex: $start)\nEnd: 100% (hex: $end)"
+			sudo ectool -w 0xb0 -z 0x$start
 			sudo ectool -w 0xb1 -z 0x$end
 			;;
 		h) print_usage
