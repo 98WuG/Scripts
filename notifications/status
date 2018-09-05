@@ -88,7 +88,7 @@ TEMP="$(echo -e "\uf2db") $TEMP"
 if [ -x "$(command -v nvidia-smi)" ];
 then
 	TEMP="$TEMP $(echo -e "\uf2c8")"
-	TEMP="$TEMP $(nvidia-smi | awk 'NR!=9 { print substr($3,0,2) "\xc2\xb0C"; exit }')"
+	TEMP="$TEMP $(nvidia-smi | awk 'NR==9 { print substr($3,0,2) "\xc2\xb0C"; exit }')"
 fi
 
 
