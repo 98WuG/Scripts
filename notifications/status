@@ -82,7 +82,7 @@ else
 fi
 
 # CPU Temp
-TEMP="$(sensors | grep "Package id 0" | awk '{ print substr($4,2)+0 "\xc2\xb0C" }')"
+TEMP="$(sensors | awk '/Package id 0/ { print substr($4,2)+0 "\xc2\xb0C" }')"
 TEMP="$(echo -e "\uf2db") $TEMP"
 # GPU Temp
 if [ -x "$(command -v nvidia-smi)" ];

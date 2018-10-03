@@ -1,0 +1,17 @@
+#!/bin/bash
+
+DIR="/mnt/data/Documents/public/print"
+LOG="/home/jerry/logs/printing"
+
+OIFS="$IFS"
+IFS=$'\n'
+
+for filename in $(find $DIR -maxdepth 1 -type f | egrep '(*.txt|*.doc|*.odt|*.docx|*.pdf)')
+do
+	message="Printing $(basename "$filename") at $(date)"
+	echo "$message" >> $LOG
+	twmnc -t "Print" -c "$message"
+	unoconv -f pdf --stdout "$filename" | lpr -o sides=two-sided-long-edge
+	mv -v "$DIR/$(basename "$filename")" "$DIR/done/$(basename "$filename")"
+	echo "" >> $LOG
+done

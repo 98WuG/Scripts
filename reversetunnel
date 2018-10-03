@@ -1,0 +1,11 @@
+#!/bin/bash
+
+opentunnel() {
+	echo -e "Reverse tunneling for $3"
+	ssh -fNR $1:localhost:$2 gw
+}
+
+opentunnel 9001 80 "Nextcloud"
+opentunnel 9002 32400 "Plex"
+opentunnel 9003 8081 "Linux-Dash"
+opentunnel 9004 3579 "Ombi"

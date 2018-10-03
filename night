@@ -13,7 +13,8 @@ light -S 50
 
 notify-send "Night mode"
 
-feh --bg-fill ~/Pictures/Wallpaper/YourName5.png
+#feh --bg-fill ~/Pictures/Wallpaper/YourName5.png
+feh --bg-fill ~/Pictures/Wallpaper/FranXX_dark.png
 
 #if xrandr | grep -q -i "HDMI1 disconnected";
 #then
