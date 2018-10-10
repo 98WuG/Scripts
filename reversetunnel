@@ -1,11 +1,19 @@
 #!/bin/bash
 
+KEY="/home/jerry/.ssh/id_rsa_desktop"
+pkill autossh
+COUNTER=10984
+
 opentunnel() {
 	echo -e "Reverse tunneling for $3"
-	ssh -fNR $1:localhost:$2 gw
+	#ssh -fNR $1:localhost:$2 gw
+	autossh -M $COUNTER -o "TCPKeepAlive=yes" -o "PubkeyAuthentication=yes" -o "PasswordAuthentication=no" -i "$KEY" -fNR $1:localhost:$2 jerry@geraldwu.com
+	COUNTER=$((COUNTER+1))
 }
 
 opentunnel 9001 80 "Nextcloud"
 opentunnel 9002 32400 "Plex"
-opentunnel 9003 8081 "Linux-Dash"
+opentunnel 9003 9090 "Monitor"
 opentunnel 9004 3579 "Ombi"
+opentunnel 55555 22	"ssh"
+opentunnel 53 53 "dns"
