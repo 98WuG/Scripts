@@ -6,12 +6,24 @@ LOG="/home/jerry/logs/printing"
 OIFS="$IFS"
 IFS=$'\n'
 
+# Loop through all files in $DIR
 for filename in $(find $DIR -maxdepth 1 -type f | egrep '(*.txt|*.doc|*.odt|*.docx|*.pdf)')
 do
-	message="Printing $(basename "$filename") at $(date)"
-	echo "$message" >> $LOG
+	# Desktop notification
 	twmnc -t "Print" -c "$message"
-	unoconv -f pdf --stdout "$filename" | lpr -o sides=two-sided-long-edge
-	mv -v "$DIR/$(basename "$filename")" "$DIR/done/$(basename "$filename")"
+	#unoconv -f pdf --stdout "$filename" | lpr -o sides=two-sided-long-edge
+
+	# Get number of pages in file
+	pagecount="$(pdftk "$filename" dump_data | grep NumberOfPages | cut -d' ' -f2)"
+
+	# Log the print in a log file
+	message="Printing $(basename "$filename") at $(date) ($pagecount pages)"
+	echo "$message" >> $LOG
 	echo "" >> $LOG
+
+	# Print out file
+	lpr -o sides=two-sided-long-edge "$filename"
+
+	# Move the printed file to the processed directory
+	mv -v "$DIR/$(basename "$filename")" "$DIR/done/$(basename "$filename")"
 done

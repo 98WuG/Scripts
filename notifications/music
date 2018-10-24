@@ -1,8 +1,8 @@
-#!/bin/zsh
+#!/bin/bash
 
 #CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
 #CURRENT="$(mpc current)"
-CURRENT="$(mpc --host 127.0.0.1 --port 6601 current)"
+CURRENT="$(mpc --host 998467mnq78a97@jerry --port 6600 current)"
 if [[ -z $CURRENT ]];
 then
 	CURRENT="$(echo -e "\uf025") Nothing playing"
