@@ -5,15 +5,24 @@ pkill autossh
 COUNTER=10984
 
 opentunnel() {
-	echo -e "Reverse tunneling for $3"
+	echo -e "Reverse tunneling for $3 (remote $1 to localhost $2)"
 	#ssh -fNR $1:localhost:$2 gw
 	autossh -M $COUNTER -o "TCPKeepAlive=yes" -o "PubkeyAuthentication=yes" -o "PasswordAuthentication=no" -i "$KEY" -fNR $1:localhost:$2 jerry@geraldwu.com
 	COUNTER=$((COUNTER+1))
 }
+echo -e "Opened tunnel at $(date)" >> /home/jerry/logs/tunnel
 
 opentunnel 9001 80 "Nextcloud"
 opentunnel 9002 32400 "Plex"
 opentunnel 9003 9090 "Monitor"
 opentunnel 9004 3579 "Ombi"
+opentunnel 9005 8083 "Calibre"
+opentunnel 9006 8181 "Tautulli"
+opentunnel 9007 8989 "Sonarr"
+opentunnel 9008 7878 "Radarr"
+opentunnel 9009 9091 "Transmission"
+opentunnel 9010 9117 "Jackett"
+opentunnel 9011 8000 "Icecast"
+opentunnel 9012 18600 "Guacamole"
 opentunnel 55555 22	"ssh"
 opentunnel 53 53 "dns"
