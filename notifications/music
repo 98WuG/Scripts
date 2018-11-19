@@ -2,7 +2,7 @@
 
 #CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
 #CURRENT="$(mpc current)"
-CURRENT="$(mpc --host 998467mnq78a97@jerry --port 6600 current)"
+CURRENT="$(mpc current)"
 if [[ -z $CURRENT ]];
 then
 	CURRENT="$(echo -e "\uf025") Nothing playing"
