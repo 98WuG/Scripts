@@ -13,7 +13,7 @@ light -S 50
 
 notify-send "Night mode"
 
-feh --bg-fill ~/Pictures/Wallpaper/YourName5.png
+feh --bg-fill ~/Pictures/Wallpaper/yukino.png
 #feh --bg-fill ~/Pictures/Wallpaper/FranXX_dark_centered.png
 #feh --bg-fill ~/Pictures/Wallpaper/NGNL.png
 

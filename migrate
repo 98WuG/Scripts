@@ -17,7 +17,7 @@ else
 	REPO="$@"
 fi
 
-git remote set-url origin git@git.geraldwu.com:98WuG/$REPO
+git remote set-url origin git@gitea:98WuG/$REPO
 git remote set-url origin --add git@github.com:98WuG/$REPO
 git remote add origin-github git@github.com:98WuG/$REPO
 

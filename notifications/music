@@ -1,8 +1,6 @@
 #!/bin/bash
 
-#CURRENT="$(mpc current | sed -r 's/&/&amp;/g')"
-#CURRENT="$(mpc current)"
-CURRENT="$(mpc current)"
+CURRENT="$(mpc -h entoma current)"
 if [[ -z $CURRENT ]];
 then
 	CURRENT="$(echo -e "\uf025") Nothing playing"
